@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  app:
+    container_name: app
+    image: registry.gitlab.com/barwsirati/jenkinscicdtesting
+    ports:
+      - "4000:5000"
