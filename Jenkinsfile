@@ -40,7 +40,7 @@ pipeline {
                 sh 'robot ./test-calculate.robot'
             }
         }
-        stage('Push Images to registry') {
+        stage('Push Images to Registry') {
             agent {
                 label 'test'
             }
