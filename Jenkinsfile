@@ -35,7 +35,7 @@ pipeline {
             }
             steps {
                 echo 'Create Container'
-                sh 'docker compose -f ./compose.yaml up -d --build'
+                sh 'docker-compose -f ./compose.yaml up -d --build'
                 echo 'Runing Robot'
                 sh 'robot ./test-calculate.robot'
             }
@@ -48,9 +48,9 @@ pipeline {
                 echo 'Logging'
                 sh 'docker login registry.gitlab.com'
                 echo 'Build Images'
-                sh 'cd app && docker build -t registry.gitlab.com/chidsanupongboonma/jenkinscicdtesting .'
+                sh 'cd app && docker build -t registry.gitlab.com/unnop1.tham/jenkinscicdtesting .'
                 echo 'Push Images'
-                sh 'docker push registry.gitlab.com/chidsanupongboonma/jenkinscicdtesting'
+                sh 'docker push registry.gitlab.com/unnop1.tham/jenkinscicdtesting'
             }
         }
         stage('Clean Workspace') {
