@@ -68,6 +68,7 @@ pipeline {
                 label 'pre-prod'
             }
             steps {
+                sh 'docker ps'
                 sh 'docker stop registry.gitlab.com/unnop1.tham/jenkinscicdtesting || true'
                 sh 'docker rm registry.gitlab.com/unnop1.tham/jenkinscicdtesting || true'
             }
