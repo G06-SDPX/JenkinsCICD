@@ -71,9 +71,9 @@ pipeline {
                     echo 'Show Docker running'
                     sh 'docker ps'
                     echo 'Stop Docker all'
-                    sh 'docker stop `docker ps -q`'
+                    sh 'docker stop `docker ps -q` || true'
                     echo 'Delete Docker all'
-                    sh 'docker rm `docker ps -aq`'
+                    sh 'docker rm `docker ps -aq` || true'
                 }
             }
             stage('Run Docker Container') {
