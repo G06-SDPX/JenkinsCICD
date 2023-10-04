@@ -82,7 +82,7 @@ pipeline {
                 }
             }
         }
-        stage('Test pull image from GitLab') {
+        stage('Run Docker Container') {
             agent {
                 label 'pre-prod'
             }
