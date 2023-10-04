@@ -63,13 +63,30 @@ pipeline {
                 sh 'docker system prune -a -f'
             }
         }
+        stage('Stop and Remove Docker Container') {
+            agent {
+                label 'pre-prod'
+            }
+            steps {
+                script {
+                    def containerId
+                    containerId = sh(script: 'docker ps -q -f "ancestor=registry.gitlab.com/unnop1.tham/jenkinscicdtesting"', returnStatus: true).trim()
+                    
+                    if (containerId) {
+                        echo "Stopping and removing Docker container with ID: ${containerId}"
+                        sh "docker stop ${containerId}"
+                        sh "docker rm ${containerId}"
+                    } else {
+                        echo "No running container found with the specified image."
+                    }
+                }
+            }
+        }
         stage('Test pull image from GitLab') {
             agent {
                 label 'pre-prod'
             }
             steps {
-                // echo 'Remove Old images'
-                // sh 'docker rmi registry.gitlab.com/unnop1.tham/jenkinscicdtesting'
                 echo 'Pull Image from Gitlab'
                 sh 'docker pull registry.gitlab.com/unnop1.tham/jenkinscicdtesting'
                 echo 'Run Contrainer'
