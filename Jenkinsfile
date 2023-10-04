@@ -73,7 +73,7 @@ pipeline {
                 echo 'Pull Image from Gitlab'
                 sh 'docker pull registry.gitlab.com/unnop1.tham/jenkinscicdtesting'
                 echo 'Run Contrainer'
-                sh 'docker run -p 5000:5000 -d registry.gitlab.com/unnop1.tham/jenkinscicdtesting'
+                sh 'docker run -d -p 5000:5000 registry.gitlab.com/unnop1.tham/jenkinscicdtesting'
             }
         }
     }
