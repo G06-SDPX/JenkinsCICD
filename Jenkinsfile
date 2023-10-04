@@ -69,8 +69,8 @@ pipeline {
             }
             steps {
                 sh 'docker ps'
-                sh 'docker stop registry.gitlab.com/unnop1.tham/jenkinscicdtesting || true'
-                sh 'docker rm registry.gitlab.com/unnop1.tham/jenkinscicdtesting || true'
+                sh 'docker stop `docker ps -q`'
+                sh 'docker rm `docker ps -aq`'
             }
         }
         stage('Run Docker Container') {
