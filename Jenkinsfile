@@ -68,6 +68,8 @@ pipeline {
                 label 'pre-prod'
             }
             steps {
+                echo 'Remove Old images'
+                sh 'docker rmi registry.gitlab.com/unnop1.tham/jenkinscicdtesting'
                 echo 'Pull Image from Gitlab'
                 sh 'docker pull registry.gitlab.com/unnop1.tham/jenkinscicdtesting'
                 echo 'Run Contrainer'
