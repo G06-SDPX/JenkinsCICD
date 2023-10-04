@@ -69,15 +69,10 @@ pipeline {
             }
             steps {
                 script {
-                    def containerId
-                    containerId = sh(script: 'docker ps -q -f "ancestor=registry.gitlab.com/unnop1.tham/jenkinscicdtesting"', returnStatus: true).trim()
-                    
-                    if (containerId) {
-                        echo "Stopping and removing Docker container with ID: ${containerId}"
-                        sh "docker stop ${containerId}"
-                        sh "docker rm ${containerId}"
-                    } else {
-                        echo "No running container found with the specified image."
+                    def doc_containers = sh(returnStdout: true, script: 'docker container ps -aq').replaceAll('\n', ' ') 
+                    if (doc_containers) {
+                        sh 'docker stop ${doc_containers}'
+                        sh 'docker rm ${doc_containers}'
                     }
                 }
             }
