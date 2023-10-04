@@ -75,5 +75,6 @@ pipeline {
                 echo 'Run Contrainer'
                 sh 'docker run -p 80:80 registry.gitlab.com/unnop1.tham/jenkinscicdtesting'
             }
+        }
     }
 }
